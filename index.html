@@ -226,7 +226,7 @@
 <span class="preprocessor">#<span class="keyword">define</span> NO  ((BOOL)<span class="number">0</span>)</span>
 <span class="preprocessor">#<span class="keyword">endif</span></span>
 </code></pre><p>从上面的定义，我们发现，这个BOOL的定义，在64位的ios和32位ios、mac os，定义是不一样的。在64位ios中，它是一个bool类型;在32位ios、mac os中，则是一个带符号的字符类型。另外，我们发现值也有2种情况，在64位的ios，就是YES和NO, 在32位ios、mac os，1表示YES，其他表示NO</p>
-<h3 id="2-_再来看一下使用">2. 再来看一下使用</h3><p>从上面我们知道，在32位ios及mac os中，编译器将BOOL认做8位二进制数，YES和NO值只是一个约定。那么在使用中，就会有一些问题，不小心的将长于1字节整型值赋给了BOOL变量，就只有低位会起作用（例如8960，写成16进制，就是0x2300,赋给BOOL变量，BOOL值将会是0，就是NO值）。另外，尽量要避免直接的跟YES进行比较，比如if (a == YES)，大家可以试试下面的代码，在32位和64位的ios下执行看看结果：</p>
+<h3 id="2-_再来看一下使用">2. 再来看一下使用</h3><p>从上面我们知道，在32位ios及mac os中，编译器将BOOL认做8位二进制数，YES和NO值只是一个约定。那么在使用中，就会有一些问题，不小心的将长于1字节整型值赋给了BOOL变量，就只有低位会起作用（例如8960，写成16进制，就是0x2300,赋给BOOL变量，BOOL值将会是0，就是NO值）。另外，在32位ios及mac os中,也要尽量避免直接的跟YES进行比较，比如if (a == YES)，大家可以试试下面的代码，在32位和64位的ios下执行看看结果：</p>
 <pre><code><span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 
 <span class="function">BOOL <span class="title">different</span> <span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{
