@@ -3,33 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>#include #import @class 详解及区别 | 少年的梦想</title>
+  <title>关于Object-C中@用法的梳理 | 少年的梦想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. #include[1] #include :引用系统自带的头文件，编译器会在系统目录下查找.
-[2] #include “x.h”:引用用户自定义的文件，编译器首先会在用户目录下查找，然后到安装目录下查找，最后在系统文件中查找.
-[3] 使用#include的时候要注意重复引用，一般使用#ifndef命令来解决，列如：
-#ifndef _CLASSA_H
-
-#define _CLASSA_H">
+  <meta name="description" content="‘@’是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
+1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
+2. 封装整型： NSNumber *intNumber = @1;
+3. 封装浮点型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="#include #import @class 详解及区别">
-<meta property="og:url" content="http://yuanxun2007.github.io/2015/08/13/include-import-class-详解及区别/index.html">
+<meta property="og:title" content="关于Object-C中@用法的梳理">
+<meta property="og:url" content="http://yuanxun2007.github.io/2015/08/17/关于-的一些知识/index.html">
 <meta property="og:site_name" content="少年的梦想">
-<meta property="og:description" content="1. #include[1] #include :引用系统自带的头文件，编译器会在系统目录下查找.
-[2] #include “x.h”:引用用户自定义的文件，编译器首先会在用户目录下查找，然后到安装目录下查找，最后在系统文件中查找.
-[3] 使用#include的时候要注意重复引用，一般使用#ifndef命令来解决，列如：
-#ifndef _CLASSA_H
-
-#define _CLASSA_H">
-<meta property="og:updated_time" content="2015-08-13T06:19:27.000Z">
+<meta property="og:description" content="‘@’是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
+1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
+2. 封装整型： NSNumber *intNumber = @1;
+3. 封装浮点型">
+<meta property="og:updated_time" content="2015-08-18T15:13:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="#include #import @class 详解及区别">
-<meta name="twitter:description" content="1. #include[1] #include :引用系统自带的头文件，编译器会在系统目录下查找.
-[2] #include “x.h”:引用用户自定义的文件，编译器首先会在用户目录下查找，然后到安装目录下查找，最后在系统文件中查找.
-[3] 使用#include的时候要注意重复引用，一般使用#ifndef命令来解决，列如：
-#ifndef _CLASSA_H
-
-#define _CLASSA_H">
+<meta name="twitter:title" content="关于Object-C中@用法的梳理">
+<meta name="twitter:description" content="‘@’是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
+1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
+2. 封装整型： NSNumber *intNumber = @1;
+3. 封装浮点型">
   
     <link rel="alternative" href="/atom.xml" title="少年的梦想" type="application/atom+xml">
   
@@ -194,11 +188,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-include-import-class-详解及区别" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-关于-的一些知识" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/13/include-import-class-详解及区别/" class="article-date">
-  	<time datetime="2015-08-13T04:28:45.000Z" itemprop="datePublished">2015-08-13</time>
+      <a href="/2015/08/17/关于-的一些知识/" class="article-date">
+  	<time datetime="2015-08-17T14:24:23.000Z" itemprop="datePublished">2015-08-17</time>
 </a>
     </div>
   
@@ -211,7 +205,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      #include #import @class 详解及区别
+      关于Object-C中@用法的梳理
     </h1>
   
 
@@ -220,10 +214,6 @@
       <div class="article-info article-info-post">
         
         
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/基础学习/">基础学习</a>
-	</div>
-
 
         <div class="clearfix"></div>
       </div>
@@ -231,20 +221,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-_#include">1. #include</h2><p>[1] #include <x.h>:引用系统自带的头文件，编译器会在系统目录下查找.</x.h></p>
-<p>[2] #include “x.h”:引用用户自定义的文件，编译器首先会在用户目录下查找，然后到安装目录下查找，最后在系统文件中查找.</p>
-<p>[3] 使用#include的时候要注意重复引用，一般使用#ifndef命令来解决，列如：</p>
-<pre><code><span class="id">#ifndef</span> _CLASSA_H
-
-<span class="hexcolor">#def</span>ine _CLASSA_H
-
-<span class="id">#include</span> <span class="string">"ClassA"</span>
-
-#endif
-</code></pre><h2 id="2-_#import">2. #import</h2><p>  Object-C使用头文件来包含元素声明，这些元素包括结构体、符号常量、函数原型等。Object-C语言使用#import语句来通知编译器在头文件中查询定义，功能和#include基本一致，不过#import可保证头文件只被包含一次，而不论此命令实际上在那个文件中出现了多少次。</p>
-<h2 id="3-_@class">3. @class</h2><p>  声明一个类，告诉编译器它后面是一个类的名字，不用管实现。在实现文件，如果需要使用这个类，则需要#import这个类，才会把类的引用信息包含进来。</p>
-<h2 id="4-_#import、#include二者的区别">4. #import、#include二者的区别</h2><p>  前者不会出现引用重复引用，保证在同一个文件中，一个头文件只会被#import一次；而后者如果不注意，则有可能导致重复引用同一个头文件。</p>
-<h2 id="5-_#include、#import、@class三者的区别">5. #include、#import、@class三者的区别</h2><p>  #include和#import引用类的时候，会包含类的所有信息，包括变量方法等，会对编译效率产生一定的影响，而@class则仅仅是告诉编译器一个类的声明，不会把类的引用信息包含进来。所以一般在@interface中，引用一个类用@class就好了。</p>
+        <p>‘@’是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：</p>
+<h3 id="1-_用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：">1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：</h3><pre><code><span class="number">1.</span> 封装字符串： NSString *someString = @<span class="string">"Hello World!"</span>;
+<span class="number">2.</span> 封装整型： NSNumber *intNumber = @<span class="number">1</span>;
+<span class="number">3.</span> 封装浮点型数值： NSNumber *floatNumber = @<span class="number">1.06f</span>;
+<span class="number">4.</span> 封装布尔型数值： NSNumber *boolNumber = @YES; 
+<span class="number">5.</span> 创建数组：NSArray *animals = @[@<span class="string">"dog"</span>, @<span class="string">"cat"</span>, @<span class="string">"bird"</span>, @<span class="string">"fish"</span>];
+<span class="number">6.</span> 创建字典：NSDictionary *contactDictionary = @{ @<span class="string">"firstName"</span>:@<span class="string">"Carl"</span>, 
+                                                @<span class="string">"last Name"</span>:@<span class="string">"Fu"</span>, 
+                                                @<span class="string">"mobile"</span>:@<span class="string">"xx"</span>, 
+                                                @<span class="string">"mail"</span>:@<span class="string">"xx@xx.com"</span>, nil};
+</code></pre><h3 id="2-_定义一条指令。比如：">2. 定义一条指令。比如：</h3><pre><code>1. 定义一个类：<span class="at_rule">@<span class="keyword">interface</span> Shape : NSObject</span>;
+2. 定义一个实现：<span class="at_rule">@<span class="keyword">implemention</span> Shape</span>;
+3. 定义一个接口：<span class="at_rule">@<span class="keyword">protocol</span> UIWebViewDelegate &lt;NSObject&gt;</span>;
+</code></pre><h3 id="3-_输出Object-C对象。比如：">3. 输出Object-C对象。比如：</h3><pre><code><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"The number is %@"</span>,<span class="preprocessor"> someNumber</span>);</span>
+</code></pre><p>以上是我学习的时候梳理的’@’的用法，不知道对不对，继续深入学习中…</p>
 
       
     </div>
@@ -254,18 +245,18 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/17/关于-的一些知识/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/08/17/Object-C中的布尔类型/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          关于Object-C中@用法的梳理
+          Object-C中的布尔类型
         
       </div>
     </a>
   
   
-    <a href="/2015/08/13/什么是cocoa/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">什么是cocoa?</div>
+    <a href="/2015/08/13/include-import-class-详解及区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">#include #import @class 详解及区别</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -294,7 +285,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="include-import-class-详解及区别" data-title="#include #import @class 详解及区别" data-url="http://yuanxun2007.github.io/2015/08/13/include-import-class-详解及区别/"></div>
+	<div class="ds-thread" data-thread-key="关于-的一些知识" data-title="关于Object-C中@用法的梳理" data-url="http://yuanxun2007.github.io/2015/08/17/关于-的一些知识/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -180,6 +180,217 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Object-C中的布尔类型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/17/Object-C中的布尔类型/" class="article-date">
+  	<time datetime="2015-08-17T14:27:16.000Z" itemprop="datePublished">2015-08-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/17/Object-C中的布尔类型/">Object-C中的布尔类型</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>布尔类型用来声明存储真值和假值的变量。在Object-C中，类型BOOL,具有YES和NO两个值。</p>
+<h3 id="1-_首先来看看定义，在objc-h(ios_sdk_8-4及osx_sdk_10-10)文件中，我们看到如下定义：">1. 首先来看看定义，在objc.h(ios sdk 8.4及osx sdk 10.10)文件中，我们看到如下定义：</h3><pre><code><span class="preprocessor">#<span class="keyword">define</span> OBJC_BOOL_DEFINED</span>
+
+<span class="comment">/// Type to represent a boolean value.</span>
+<span class="preprocessor">#<span class="keyword">if</span> !defined(OBJC_HIDE_64) &amp;&amp; TARGET_OS_IPHONE &amp;&amp; __LP64__</span>
+<span class="keyword">typedef</span> <span class="keyword">bool</span> BOOL;
+<span class="preprocessor">#<span class="keyword">else</span></span>
+<span class="keyword">typedef</span> <span class="keyword">signed</span> <span class="keyword">char</span> BOOL; 
+<span class="comment">// BOOL is explicitly signed so @encode(BOOL) == "c" rather than "C" </span>
+<span class="comment">// even if -funsigned-char is used.</span>
+<span class="preprocessor">#<span class="keyword">endif</span></span>
+
+<span class="preprocessor">#<span class="keyword">if</span> __has_feature(objc_bool)</span>
+<span class="preprocessor">#<span class="keyword">define</span> YES __objc_yes</span>
+<span class="preprocessor">#<span class="keyword">define</span> NO  __objc_no</span>
+<span class="preprocessor">#<span class="keyword">else</span></span>
+<span class="preprocessor">#<span class="keyword">define</span> YES ((BOOL)<span class="number">1</span>)</span>
+<span class="preprocessor">#<span class="keyword">define</span> NO  ((BOOL)<span class="number">0</span>)</span>
+<span class="preprocessor">#<span class="keyword">endif</span></span>
+</code></pre><p>从上面的定义，我们发现，这个BOOL的定义，在64位的ios和32位ios、mac os，定义是不一样的。在64位ios中，它是一个bool类型;在32位ios、mac os中，则是一个带符号的字符类型。另外，我们发现值也有2种情况，在64位的ios，就是YES和NO, 在32位ios、mac os，1表示YES，其他表示NO</p>
+<h3 id="2-_再来看一下使用">2. 再来看一下使用</h3><p>从上面我们知道，在32位ios及mac os中，编译器将BOOL认做8位二进制数，YES和NO值只是一个约定。那么在使用中，就会有一些问题，不小心的将长于1字节整型值赋给了BOOL变量，就只有低位会起作用（例如8960，写成16进制，就是0x2300,赋给BOOL变量，BOOL值将会是0，就是NO值）。另外，尽量要避免直接的跟YES进行比较，比如if (a == YES)，大家可以试试下面的代码，在32位和64位的ios下执行看看结果：</p>
+<pre><code><span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
+
+<span class="function">BOOL <span class="title">different</span> <span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{
+    <span class="keyword">return</span> a - b;
+}
+
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>{
+    @autoreleasepool {
+        <span class="comment">// insert code here...</span>
+        <span class="keyword">if</span> (different(<span class="number">11</span>, <span class="number">10</span>) == YES) {
+            <span class="built_in">printf</span> (<span class="string">"11 != 10\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"11 == 10\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">10</span>, <span class="number">11</span>) == YES) {
+            <span class="built_in">printf</span> (<span class="string">"10 != 11\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"10 == 11\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">12</span>, <span class="number">10</span>) == YES) {
+            <span class="built_in">printf</span> (<span class="string">"12 != 10\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"12 == 10\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">512</span>, <span class="number">256</span>) == YES) {
+            <span class="built_in">printf</span> (<span class="string">"512 != 256\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"512 == 256\n"</span>);
+        }
+
+        BOOL a = <span class="number">8960</span>;
+        <span class="keyword">if</span> (a == YES) {
+            <span class="built_in">printf</span> (<span class="string">"a == YES\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"a == NO\n"</span>);
+        }
+
+        BOOL b = <span class="number">1</span>;
+        <span class="keyword">if</span> (b == YES) {
+            <span class="built_in">printf</span> (<span class="string">"b == YES\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"b == NO\n"</span>);
+        }
+
+        BOOL c = <span class="number">255</span>;
+        <span class="keyword">if</span> (c == YES) {
+            <span class="built_in">printf</span> (<span class="string">"c == YES\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"c == NO\n"</span>);
+        }
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</code></pre><p>我自己建了2个工程测试了一下上面的代码，在ios sdk 8.4下和mac sdk 10.10下结果分别如下：</p>
+<pre><code>ios sdk <span class="number">8.4</span> (<span class="number">64</span>位ios)执行结果:
+<span class="number">11</span> != <span class="number">10</span>
+<span class="number">10</span> != <span class="number">11</span>
+<span class="number">12</span> != <span class="number">10</span>
+<span class="number">512</span> != <span class="number">256</span>
+a == YES
+b == YES
+c == YES
+
+mac sdk <span class="number">10.10</span> (<span class="number">64</span>位mac os)执行结果:
+<span class="number">11</span> != <span class="number">10</span>
+<span class="number">10</span> == <span class="number">11</span>
+<span class="number">12</span> == <span class="number">10</span>
+<span class="number">512</span> == <span class="number">256</span>
+a == NO
+b == YES
+c == NO
+</code></pre><p>上面是我今天看书及博客梳理的结果，如有问题，请留言帮忙指正，不胜感激…</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
+    <article id="post-关于-的一些知识" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/17/关于-的一些知识/" class="article-date">
+  	<time datetime="2015-08-17T14:24:23.000Z" itemprop="datePublished">2015-08-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/17/关于-的一些知识/">关于Object-C中@用法的梳理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>‘@’是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：</p>
+<h3 id="1-_用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：">1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：</h3><pre><code><span class="number">1.</span> 封装字符串： NSString *someString = @<span class="string">"Hello World!"</span>;
+<span class="number">2.</span> 封装整型： NSNumber *intNumber = @<span class="number">1</span>;
+<span class="number">3.</span> 封装浮点型数值： NSNumber *floatNumber = @<span class="number">1.06f</span>;
+<span class="number">4.</span> 封装布尔型数值： NSNumber *boolNumber = @YES; 
+<span class="number">5.</span> 创建数组：NSArray *animals = @[@<span class="string">"dog"</span>, @<span class="string">"cat"</span>, @<span class="string">"bird"</span>, @<span class="string">"fish"</span>];
+<span class="number">6.</span> 创建字典：NSDictionary *contactDictionary = @{ @<span class="string">"firstName"</span>:@<span class="string">"Carl"</span>, 
+                                                @<span class="string">"last Name"</span>:@<span class="string">"Fu"</span>, 
+                                                @<span class="string">"mobile"</span>:@<span class="string">"xx"</span>, 
+                                                @<span class="string">"mail"</span>:@<span class="string">"xx@xx.com"</span>, nil};
+</code></pre><h3 id="2-_定义一条指令。比如：">2. 定义一条指令。比如：</h3><pre><code>1. 定义一个类：<span class="at_rule">@<span class="keyword">interface</span> Shape : NSObject</span>;
+2. 定义一个实现：<span class="at_rule">@<span class="keyword">implemention</span> Shape</span>;
+3. 定义一个接口：<span class="at_rule">@<span class="keyword">protocol</span> UIWebViewDelegate &lt;NSObject&gt;</span>;
+</code></pre><h3 id="3-_输出Object-C对象。比如：">3. 输出Object-C对象。比如：</h3><pre><code><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"The number is %@"</span>,<span class="preprocessor"> someNumber</span>);</span>
+</code></pre><p>以上是我学习的时候梳理的’@’的用法，不知道对不对，继续深入学习中…</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-include-import-class-详解及区别" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
