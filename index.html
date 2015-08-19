@@ -320,14 +320,14 @@ POINTER        <span class="number">32</span>       <span class="number">32</spa
 </code></pre><p>从上面的文件中，可以梳理出2点：</p>
 <blockquote>
 <ul>
-<li>BOOL的定义，在64位的ios和32位ios、mac os，定义是不一样的。在64位ios中，它就是一个bool类型;在32位ios、mac os中，则是一个带符号的字符类型。</li>
+<li>BOOL的定义，在64位的ios和32位ios、mac os，定义是不一样的。在64位ios中，它就是一个bool类型;在32位ios、mac os中，则是一个8位带符号的字符类型。</li>
 <li>BOOL的值也有2种情况，在64位ios，就是YES和NO, 在32位ios、mac os，1表示YES，其他表示NO</li>
 </ul>
 </blockquote>
 <h3 id="2-_再来看一下使用">2. 再来看一下使用</h3><p>从上面我们知道，BOOL只有在64位ios中才是真正的布尔类型值，在32位ios及mac os中，编译器将BOOL认做8位二进制数，YES和NO值只是一个约定。所以使用的时候就需要注意以下2点：</p>
 <blockquote>
 <ul>
-<li>在32位ios及mac os中，不要直接的跟YES进行比较判断真假，这么做的话，可能会得到意想不到的结果</li>
+<li>在32位ios及mac os中，非零值未必是BOOL的YES，但是0 一定是NO。所以最好不要直接的跟YES进行比较判断真假，这么做的话，可能会得到意想不到的结果</li>
 <li>在32位ios及mac os中，不小心的将长于1字节整型值赋给了BOOL变量，就只有低位会起作用（例如8960，写成16进制，就是0x2300,赋给BOOL变量，BOOL值将会是0，就是NO值）。</li>
 </ul>
 </blockquote>
