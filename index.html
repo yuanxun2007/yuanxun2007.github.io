@@ -180,6 +180,98 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-LP64-数据模型" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/19/LP64-数据模型/" class="article-date">
+  	<time datetime="2015-08-19T09:32:17.000Z" itemprop="datePublished">2015-08-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/19/LP64-数据模型/">__LP64__数据模型</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近看iOS sdk，发现标志<strong>LP64</strong>，不知道什么意思，赶紧脑补了一下，从网上摘了点知识过来。</p>
+<h3 id="1-_基础数据类型模型定义">1. 基础数据类型模型定义</h3><p>C/C++仅仅定义基本数据类型的关系（字长：CHAR&lt;=SHORT&lt;=INT&lt;=LONG），并没有严格定义它们的字长，根据编译器的不同实现，它们的字长表示也不同</p>
+<blockquote>
+<ul>
+<li>LP64指的是LONG/POINTER字长为64位；</li>
+<li>ILP64指的是INT/LONG/POINT字长为64位；</li>
+<li>LLP64指的是LONGLONG/POINTER字长为64位；</li>
+<li>ILP32指的是INT/LONG/POINTER字长为32位；</li>
+<li>LP32指的是LONG/POINT字长是32位的，INT字长为16位。</li>
+</ul>
+</blockquote>
+<h3 id="2-_数据模型中数据类型的长度表">2. 数据模型中数据类型的长度表</h3><p>ILP32和LP32是32位平台上字长的数据模型，LP64、ILP64、LLP64是64位平台上字长的数据模型</p>
+<pre><code>TYPE           LP32    ILP32    LP64    ILP64    LLP64
+
+CHAR           <span class="number">8</span>        <span class="number">8</span>        <span class="number">8</span>        <span class="number">8</span>        <span class="number">8</span>
+
+SHORT          <span class="number">16</span>       <span class="number">16</span>       <span class="number">16</span>       <span class="number">16</span>       <span class="number">16</span>
+
+INT            <span class="number">16</span>       <span class="number">32</span>       <span class="number">32</span>       <span class="number">64</span>       <span class="number">32</span>
+
+LONG           <span class="number">32</span>       <span class="number">32</span>       <span class="number">64</span>       <span class="number">64</span>       <span class="number">32</span>
+
+LONG LONG      <span class="number">64</span>       <span class="number">64</span>       <span class="number">64</span>       <span class="number">64</span>       <span class="number">64</span>
+
+POINTER        <span class="number">32</span>       <span class="number">32</span>       <span class="number">64</span>       <span class="number">64</span>       <span class="number">64</span> 
+</code></pre><h3 id="3-_一些注意点">3. 一些注意点</h3><blockquote>
+<ul>
+<li>32位Windows采用的是ILP32数据模型，64位Windows采用LLP64数据模型。</li>
+<li>32位的Linux/Unix使用ILP32数据模型，64位Linux/Unix使用LP64数据模型。</li>
+<li>为了增加代码的移植性，打印无符号整形数，不管申明时是如何定义的，统一使用 %lu。</li>
+<li>为了保证平台的通用性，代码中尽量不要使用long数据库型。</li>
+<li>使用INT时也可以使用intptr_t来保证平台的通用性，它在不同的平台上编译时长度不同，但都是标准的平台长度，比如：64位机器上长度为8字节，32位机器上长度为4字节。</li>
+<li>编写代码时要尽量使用sizeof来计算数据类型的大小。     </li>
+<li>ssize_t和size_t分别是signsize_t和unsigned signed size of computer word size。它们也是表示计算机的字长，在32位机器上是int型，在64位机器上long型，从某种意义上来说它们等同于intptr_t和 uintptr_t。</li>
+</ul>
+</blockquote>
+<p>[1]参考链接：<a href="http://www.cnblogs.com/xiongjiaji/archive/2012/10/07/2714427.html" target="_blank" rel="external">http://www.cnblogs.com/xiongjiaji/archive/2012/10/07/2714427.html</a></p>
+<p>[2]参考链接：<a href="http://www.2cto.com/kf/201212/172631.html" target="_blank" rel="external">http://www.2cto.com/kf/201212/172631.html</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/脑补杂技/">脑补杂技</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Object-C中的布尔类型" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
