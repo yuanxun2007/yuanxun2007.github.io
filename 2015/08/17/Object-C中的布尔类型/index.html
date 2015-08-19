@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Object-C中的布尔类型 | 少年的梦想</title>
+  <title>Object-C中的布尔类型(BOOL) | 少年的梦想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="布尔类型用来声明存储真值和假值的变量。在Object-C中，类型BOOL,具有YES和NO两个值。
 1. 首先来看看定义，在objc.h(ios sdk 8.4及osx sdk 10.10)文件中，我们看到如下定义：#define OBJC_BOOL_DEFINED
@@ -11,7 +11,7 @@
 /// Type to represent a boolean value.
 #if !defined(OBJC_HIDE_64)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Object-C中的布尔类型">
+<meta property="og:title" content="Object-C中的布尔类型(BOOL)">
 <meta property="og:url" content="http://yuanxun2007.github.io/2015/08/17/Object-C中的布尔类型/index.html">
 <meta property="og:site_name" content="少年的梦想">
 <meta property="og:description" content="布尔类型用来声明存储真值和假值的变量。在Object-C中，类型BOOL,具有YES和NO两个值。
@@ -19,9 +19,9 @@
 
 /// Type to represent a boolean value.
 #if !defined(OBJC_HIDE_64)">
-<meta property="og:updated_time" content="2015-08-18T16:59:51.000Z">
+<meta property="og:updated_time" content="2015-08-19T01:37:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Object-C中的布尔类型">
+<meta name="twitter:title" content="Object-C中的布尔类型(BOOL)">
 <meta name="twitter:description" content="布尔类型用来声明存储真值和假值的变量。在Object-C中，类型BOOL,具有YES和NO两个值。
 1. 首先来看看定义，在objc.h(ios sdk 8.4及osx sdk 10.10)文件中，我们看到如下定义：#define OBJC_BOOL_DEFINED
 
@@ -208,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Object-C中的布尔类型
+      Object-C中的布尔类型(BOOL)
     </h1>
   
 
@@ -247,8 +247,21 @@
 <span class="preprocessor">#<span class="keyword">define</span> YES ((BOOL)<span class="number">1</span>)</span>
 <span class="preprocessor">#<span class="keyword">define</span> NO  ((BOOL)<span class="number">0</span>)</span>
 <span class="preprocessor">#<span class="keyword">endif</span></span>
-</code></pre><p>从上面的定义，我们发现，这个BOOL的定义，在64位的ios和32位ios、mac os，定义是不一样的。在64位ios中，它是一个bool类型;在32位ios、mac os中，则是一个带符号的字符类型。另外，我们发现值也有2种情况，在64位的ios，就是YES和NO, 在32位ios、mac os，1表示YES，其他表示NO</p>
-<h3 id="2-_再来看一下使用">2. 再来看一下使用</h3><p>从上面我们知道，在32位ios及mac os中，编译器将BOOL认做8位二进制数，YES和NO值只是一个约定。那么在使用中，就会有一些问题，不小心的将长于1字节整型值赋给了BOOL变量，就只有低位会起作用（例如8960，写成16进制，就是0x2300,赋给BOOL变量，BOOL值将会是0，就是NO值）。另外，在32位ios及mac os中,也要尽量避免直接的跟YES进行比较，比如if (a == YES)，大家可以试试下面的代码，在32位和64位的ios下执行看看结果：</p>
+</code></pre><p>从上面的文件中，可以梳理出2点：</p>
+<blockquote>
+<ul>
+<li>BOOL的定义，在64位的ios和32位ios、mac os，定义是不一样的。在64位ios中，它就是一个bool类型;在32位ios、mac os中，则是一个带符号的字符类型。</li>
+<li>BOOL的值也有2种情况，在64位ios，就是YES和NO, 在32位ios、mac os，1表示YES，其他表示NO</li>
+</ul>
+</blockquote>
+<h3 id="2-_再来看一下使用">2. 再来看一下使用</h3><p>从上面我们知道，BOOL只有在64位ios中才是真正的布尔类型值，在32位ios及mac os中，编译器将BOOL认做8位二进制数，YES和NO值只是一个约定。所以使用的时候就需要注意以下2点：</p>
+<blockquote>
+<ul>
+<li>在32位ios及mac os中，不要直接的跟YES进行比较判断真假，这么做的话，可能会得到意想不到的结果</li>
+<li>在32位ios及mac os中，不小心的将长于1字节整型值赋给了BOOL变量，就只有低位会起作用（例如8960，写成16进制，就是0x2300,赋给BOOL变量，BOOL值将会是0，就是NO值）。</li>
+</ul>
+</blockquote>
+<p>我建了2个工程进行测试验证，执行下面的代码及结果如下：</p>
 <pre><code><span class="preprocessor">#import &lt;Foundation/Foundation.h&gt;</span>
 
 <span class="function">BOOL <span class="title">different</span> <span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>{
@@ -258,6 +271,40 @@
 <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>{
     @autoreleasepool {
         <span class="comment">// insert code here...</span>
+        <span class="comment">//第一组，直接看函数返回的真假值</span>
+        <span class="keyword">if</span> (different(<span class="number">11</span>, <span class="number">10</span>)) {
+            <span class="built_in">printf</span> (<span class="string">"11 != 10\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"11 == 10\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">10</span>, <span class="number">11</span>)) {
+            <span class="built_in">printf</span> (<span class="string">"10 != 11\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"10 == 11\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">10</span>, <span class="number">10</span>)) {
+            <span class="built_in">printf</span> (<span class="string">"10 != 10\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"10 == 10\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">12</span>, <span class="number">10</span>)) {
+            <span class="built_in">printf</span> (<span class="string">"12 != 10\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"12 == 10\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">512</span>, <span class="number">256</span>)) {
+            <span class="built_in">printf</span> (<span class="string">"512 != 256\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"512 == 256\n"</span>);
+        }
+
+        <span class="built_in">printf</span> (<span class="string">"***************************************\n"</span>);
+
+        <span class="comment">//第二组，函数返回的真假值，直接与YES的比较</span>
         <span class="keyword">if</span> (different(<span class="number">11</span>, <span class="number">10</span>) == YES) {
             <span class="built_in">printf</span> (<span class="string">"11 != 10\n"</span>);
         } <span class="keyword">else</span> {
@@ -268,6 +315,12 @@
             <span class="built_in">printf</span> (<span class="string">"10 != 11\n"</span>);
         } <span class="keyword">else</span> {
             <span class="built_in">printf</span> (<span class="string">"10 == 11\n"</span>);
+        }
+
+        <span class="keyword">if</span> (different(<span class="number">10</span>, <span class="number">10</span>) == YES) {
+            <span class="built_in">printf</span> (<span class="string">"10 != 10\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"10 == 10\n"</span>);
         }
 
         <span class="keyword">if</span> (different(<span class="number">12</span>, <span class="number">10</span>) == YES) {
@@ -282,6 +335,33 @@
             <span class="built_in">printf</span> (<span class="string">"512 == 256\n"</span>);
         }
 
+        <span class="built_in">printf</span> (<span class="string">"***************************************\n"</span>);
+
+        <span class="comment">//第三组，把int值赋给布尔变量，看真假</span>
+        BOOL x = <span class="number">8960</span>;
+        <span class="keyword">if</span> (x) {
+            <span class="built_in">printf</span> (<span class="string">"x is true\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"x is false\n"</span>);
+        }
+
+        BOOL y = <span class="number">1</span>;
+        <span class="keyword">if</span> (y) {
+            <span class="built_in">printf</span> (<span class="string">"y is true\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"y is false\n"</span>);
+        }
+
+        BOOL z = <span class="number">255</span>;
+        <span class="keyword">if</span> (z) {
+            <span class="built_in">printf</span> (<span class="string">"z is true\n"</span>);
+        } <span class="keyword">else</span> {
+            <span class="built_in">printf</span> (<span class="string">"z is false\n"</span>);
+        }
+
+        <span class="built_in">printf</span> (<span class="string">"***************************************\n"</span>);
+
+        <span class="comment">//第四组，把int值赋给布尔变量，与YES的比较</span>
         BOOL a = <span class="number">8960</span>;
         <span class="keyword">if</span> (a == YES) {
             <span class="built_in">printf</span> (<span class="string">"a == YES\n"</span>);
@@ -305,25 +385,49 @@
     }
     <span class="keyword">return</span> <span class="number">0</span>;
 }
-</code></pre><p>我自己建了2个工程测试了一下上面的代码，在ios sdk 8.4下和mac sdk 10.10下结果分别如下：</p>
-<pre><code>ios sdk <span class="number">8.4</span> (<span class="number">64</span>位ios)执行结果:
-<span class="number">11</span> != <span class="number">10</span>
-<span class="number">10</span> != <span class="number">11</span>
-<span class="number">12</span> != <span class="number">10</span>
-<span class="number">512</span> != <span class="number">256</span>
+</code></pre><p>在ios sdk 8.4下和mac sdk 10.10下结果分别如下：</p>
+<pre><code>ios sdk 8.4 (64位ios)执行结果:
+11 != 10
+10 != 11
+10 == 10
+12 != 10
+512 != 256
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
+11 != 10
+10 != 11
+10 == 10
+12 != 10
+512 != 256
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>    
+x is true
+y is true
+z is true
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
 a == YES
 b == YES
 c == YES
 
-mac sdk <span class="number">10.10</span> (<span class="number">64</span>位mac os)执行结果:
-<span class="number">11</span> != <span class="number">10</span>
-<span class="number">10</span> == <span class="number">11</span>
-<span class="number">12</span> == <span class="number">10</span>
-<span class="number">512</span> == <span class="number">256</span>
+mac sdk 10.10 (64位mac os)执行结果:
+11 != 10
+10 != 11
+10 == 10
+12 != 10
+512 == 256
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
+11 != 10
+10 == 11
+10 == 10
+12 == 10
+512 == 256
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
+x is false
+y is true
+z is true
+<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>
 a == NO
 b == YES
 c == NO
-</code></pre><p>上面是我今天看书及博客梳理的结果，如有问题，请留言帮忙指正，不胜感激…</p>
+</code></pre><p>上面是我看书及博客梳理的结果，如有问题，请留言帮忙指正，不胜感激…</p>
 
       
     </div>
@@ -364,7 +468,7 @@ c == NO
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Object-C中的布尔类型" data-title="Object-C中的布尔类型" data-url="http://yuanxun2007.github.io/2015/08/17/Object-C中的布尔类型/"></div>
+	<div class="ds-thread" data-thread-key="Object-C中的布尔类型" data-title="Object-C中的布尔类型(BOOL)" data-url="http://yuanxun2007.github.io/2015/08/17/Object-C中的布尔类型/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
