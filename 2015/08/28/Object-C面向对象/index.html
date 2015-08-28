@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Object-C面向对象 | 少年的梦想</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="面向对象编程(Object-Oriented Programming)的首字母缩写为OOP，这是一种编程技术，最初是为编写模拟程序而开发的。
+1. 首先要了解一下使用间接间接的含义很简单——不在代码中直接使用某个值，而是使用该值的指针。在Object-C里面，见的最多的就是指针，引起问题的，绝大部分也是指针。不管是面向过程还是面向对象，都使用了这个技术。
+2. 面向过程 &amp;amp; 面向对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Object-C面向对象">
+<meta property="og:url" content="http://yuanxun2007.github.io/2015/08/28/Object-C面向对象/index.html">
+<meta property="og:site_name" content="少年的梦想">
+<meta property="og:description" content="面向对象编程(Object-Oriented Programming)的首字母缩写为OOP，这是一种编程技术，最初是为编写模拟程序而开发的。
+1. 首先要了解一下使用间接间接的含义很简单——不在代码中直接使用某个值，而是使用该值的指针。在Object-C里面，见的最多的就是指针，引起问题的，绝大部分也是指针。不管是面向过程还是面向对象，都使用了这个技术。
+2. 面向过程 &amp;amp; 面向对象">
+<meta property="og:updated_time" content="2015-08-28T10:46:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Object-C面向对象">
+<meta name="twitter:description" content="面向对象编程(Object-Oriented Programming)的首字母缩写为OOP，这是一种编程技术，最初是为编写模拟程序而开发的。
+1. 首先要了解一下使用间接间接的含义很简单——不在代码中直接使用某个值，而是使用该值的指针。在Object-C里面，见的最多的就是指针，引起问题的，绝大部分也是指针。不管是面向过程还是面向对象，都使用了这个技术。
+2. 面向过程 &amp;amp; 面向对象">
+  
+    <link rel="alternative" href="/atom.xml" title="少年的梦想" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="http://7xkv0k.com1.z0.glb.clouddn.com/wal.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">少年的梦想</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">默而识之，学而不厌</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/yuanxun2007" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.devtang.com/">唐巧的技术博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://onevcat.com/">王魏的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://beyondvincent.com/">破船之家的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://litten.github.io/">Litten的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">少年的梦想是风的梦想，青春的思念是长长的思念。仅以此博客重新学起，并向大神们看齐…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">少年的梦想</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xkv0k.com1.z0.glb.clouddn.com/wal.jpg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">少年的梦想</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">默而识之，学而不厌</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yuanxun2007" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Object-C面向对象" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/28/Object-C面向对象/" class="article-date">
+  	<time datetime="2015-08-28T01:47:45.000Z" itemprop="datePublished">2015-08-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Object-C面向对象
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>面向对象编程(Object-Oriented Programming)的首字母缩写为OOP，这是一种编程技术，最初是为编写模拟程序而开发的。</p>
+<h3 id="1-_首先要了解一下使用间接">1. 首先要了解一下使用间接</h3><p>间接的含义很简单——不在代码中直接使用某个值，而是使用该值的指针。在Object-C里面，见的最多的就是指针，引起问题的，绝大部分也是指针。不管是面向过程还是面向对象，都使用了这个技术。</p>
+<h3 id="2-_面向过程_&amp;_面向对象">2. 面向过程 &amp; 面向对象</h3><blockquote>
+<ul>
+<li><ol>
+<li>面向过程：分析出解决问题所需的步骤，然后用函数把这些步骤一步一步实现，使用的时候一个一个依次调用就可以了。偏向于机器的思考方式</li>
+</ol>
+</li>
+<li><ol>
+<li>面向对象：把构成问题事务分解成各个对象，建立对象的目的不是为了完成一个步骤，而是为了描述某个事物在整个解决问题的步骤中的行为。偏向于人类的思考方式</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="3-_产生面向对象的历史原因">3. 产生面向对象的历史原因</h3><blockquote>
+<ul>
+<li><ol>
+<li>计算机是帮助人类解决问题的，然而终究只是一个机器，只会按照程序员写的代码一步一步执行得到结果。结构化编程，就是按照机器的思维写出的代码，如果系统很大，逻辑很复杂，那么后期的维护和扩展将非常困难。 </li>
+</ol>
+</li>
+<li><ol>
+<li>结构化设计是以功能为目标来设计构造应用系统，这种做法导致我们程序设计时，不得不将客体所构成的现实世界映射到由功能模块组成的解空间中，这种空间转换，背离了人们观察和解决问题的思路。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="4-_面向对象所解决的问题">4. 面向对象所解决的问题</h3><p>面向对象是在面向过程之后发展起来的，主要是为了解决人们追求的系统可维护性、扩展性、重用性问题。</p>
+<h3 id="5-_面向对象的基本概念">5. 面向对象的基本概念</h3><blockquote>
+<ul>
+<li><ol>
+<li>对象：问题域中客观存在的实体和主观抽象的概念，即是对象</li>
+</ol>
+</li>
+<li><ol>
+<li>类：对象的模版，是在对象之上的抽象。类与对象的关系，类似于数据类型与变量的关系。</li>
+</ol>
+</li>
+<li><ol>
+<li>消息：对象之间通信的描述。一般由三部分组成：接收消息的对象、消息名称、传递的变元。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="6-_面向对象的三大特性">6. 面向对象的三大特性</h3><blockquote>
+<ul>
+<li><ol>
+<li>封装：可以认为是对象的说明或者描述。封装了对象的数据和方法。通过不同的权限控制其他对象对它的访问。封装把对象的变化封装起来，在不影响其他部分的情况下修改或者扩展变化的部分，这是所有设计模式的基础。因此封装的作用，就解决了程序的可扩展性。</li>
+</ol>
+</li>
+<li><ol>
+<li>继承：子类继承父类，可以继承父类的方法和属性，实现了多态和代码重用。因此也解决了系统的重用性和可扩展性。另外一方面，继承也一定程度上破坏了封装性，因为他是对子类开放的，修改父类会影响所有的子类，所以要慎用继承，设计时要尽量遵守开闭原则，优先考虑使用组合，而不是继承，这是面向对象开发的一个重要经验。</li>
+</ol>
+</li>
+<li><ol>
+<li>多态：对象根据所接收的消息而做出的动作，不同的对象接收消息时做出的动作可能完全不同，这种现象称为多态。在程序中，接口是动作的抽象，接口的主要目的是为不相关的类提供通用的处理服务，多态就是接口的多种不同实现方式。比如鸟会飞，但是超人也会飞，通过飞这个接口，我们可以让鸟和超人，都实现这个接口，这就实现了系统的可维护性，可扩展性。 </li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="7-_在Object-C中如何体现面向对象">7. 在Object-C中如何体现面向对象</h3><blockquote>
+<ul>
+<li><ol>
+<li>类：使用@interface声明类，在@interface中定义类包含的数据与方法,实现类的封装。</li>
+</ol>
+</li>
+<li><ol>
+<li>协议：使用@protocol声明协议，定义通用的方法。然后通过在不同类中@implementation实现同一个方法，不同的操作，实现了类的多态。</li>
+</ol>
+</li>
+<li><ol>
+<li>继承：在@interface声明的类名后面，有一个:NSObject，即代表继承自NSObject类。在Object-C中，只支持单重继承，所有类都继承自NSObject或者NSProxy这2个基类，而且这2个基类都实现了协议NSObject。子类中可以使用super调用父类，使用跟父类一样的方法名，覆盖父类方法，在自己的方法中，做一些扩展，调用父类的方法，即可重载父类的方法。</li>
+</ol>
+</li>
+<li><ol>
+<li>消息：Object-C的消息发送机制，转发机制和响应机制，描述了对象之间的通信。其实这个消息机制是学习Object-C的一个核心，理解了这个机制对于开发、分析问题是很有帮助的。</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<h3 id="结尾语">结尾语</h3><p>上面的这些，都是在网上摘抄的，以方便自己理解这一块内容，也算是一个总结吧。对于Object-C里面，具体到每一个特性，都可以写一篇文章出来，这里算是大概的理解一下面向对象是个什么东西，Object-C怎么对应这些特性吧。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/08/19/LP64-数据模型/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">__LP64__数据模型</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Object-C面向对象" data-title="Object-C面向对象" data-url="http://yuanxun2007.github.io/2015/08/28/Object-C面向对象/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 少年的梦想
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
