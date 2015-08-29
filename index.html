@@ -180,6 +180,72 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Object-C继承" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/29/Object-C继承/" class="article-date">
+  	<time datetime="2015-08-29T07:32:24.000Z" itemprop="datePublished">2015-08-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/29/Object-C继承/">Object-C继承</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>继承是OOP的一个重要特性，处理类与对象间的关系。</p>
+<h3 id="1-OOP处理类与对象的两个方面">1.OOP处理类与对象的两个方面</h3><blockquote>
+<ul>
+<li>继承：子类继承父类，可以继承父类的方法和属性，实现对象的多态和代码重用。</li>
+<li>复合：对象引用其他对象时，可以利用其他对象提供的特性。</li>
+</ul>
+</blockquote>
+<h3 id="2-为何要使用继承">2.为何要使用继承</h3><p>继承的出现主要是为了解决现实中，很多对象有共同的特性，如果每个对象都去建立一套的话，就会出现很多重复的代码，而且在维护的时候也需要多套代码，很明显这是不可取的。所以继承就是为了解决代码的重用性和可维护性。</p>
+<h3 id="3-继承的语法">3.继承的语法</h3><p>@interface Circle : NSObject， 在@interface后面是定义的类名， 冒号后面是继承的类名。而且Object-C中，只支持单重继承。</p>
+<h3 id="4-继承的工作机制">4.继承的工作机制</h3><blockquote>
+<ul>
+<li>1.继承的方法调度：是通过Object-C的消息机制实现的，当代码发送消息的时候，Object-C的方法调度程序首先会在当前的类中搜索相应的方法；如果在当前类中找不到，就会将消息转发到该对象的父类中查找；如果仍然没有找到，则会在未定义的方法中查找；如果仍然没有找到，则会抛出异常。</li>
+<li>2.子类调用父类：使用super关键字，编译器会识别这个关键字，向父类发送一个消息，父类接受消息之后，仍然按照方法调度的机制，查找是否能够响应，如果不能则转发到父类查找。</li>
+<li>3.重写/覆盖父类方法：直接在当前类中，实现父类一样方法名的方法，以实现替换或者增强由超类定义的方法。</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Object-C面向对象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -785,7 +851,7 @@ c == NO
       
         <h3 id="在面试中被问到，感觉一脸茫然，不知道怎么答起？只是隐约记得好像是foundation和库之类的一些东西。说明我的知识掌握确实不是太好。回到家中补了一下课，梳理了一下，大概有以下几点吧：">在面试中被问到，感觉一脸茫然，不知道怎么答起？只是隐约记得好像是foundation和库之类的一些东西。说明我的知识掌握确实不是太好。回到家中补了一下课，梳理了一下，大概有以下几点吧：</h3><h3 id="1-_cocoa的前生：">1. cocoa的前生：</h3><p>1985年， steve jobs创建了NeXT公司,致力于开发强大且经济的工作站。NeXT选择Unix作为其操作系统，创建了NextSTEP。NextSTEP只是创造了一些特性，拥有少量忠实用户，并未在商业上获得成功。</p>
 <p>1996年，苹果公司收购NeXT之后，NextSTEP被重命名为cocoa，并得到了Macintosh编程人员的广泛认可。</p>
-<h3 id="2-_cocoa的是什么：">2. cocoa的是什么：</h3><p>使用Object-C开发的一款强大的用户界面工具包。</p>
+<h3 id="2-_cocoa是什么：">2. cocoa是什么：</h3><p>使用Object-C开发的一款强大的用户界面工具包。</p>
 <h3 id="3-_cocoa的现在：">3. cocoa的现在：</h3><p>经过多年的发展，Cocoa已经演化成一个功能强大的优秀工具集。    </p>
 
       
