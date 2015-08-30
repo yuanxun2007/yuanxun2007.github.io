@@ -3,39 +3,39 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Object-C继承 | 少年的梦想</title>
+  <title>Object-C复合 | 少年的梦想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="继承是OOP的一个重要特性，处理类与对象间的关系。
-1.OOP处理类与对象
-
-继承：子类继承父类，可以继承父类的方法和属性，实现对象的多态和代码重用。
-复合：对象引用其他对象时，可以利用其他对象提供的特性。
-
-
-2.为何要使用继承继承的出现主要是为了解决现实中，很多对象有共同的特性，如果每个对象都去建立一套的话，就会出现很多重复的代码，而且在维护的时候也需要多套代码，很明显这是不可取的。所以继承就">
+  <meta name="description" content="复合是OOP处理类与对象之间关系的另外一种方式。
+1.什么是复合复合就是把多个类的实例（即对象）组合在一起，配合使用。在Object-C中，是通过包含作为实例变量的对象指针实现的，如下所示：
+@interface Car:NSObject
+{
+    NSArray *_tires;
+    Engine *_engine;
+}
+2.复合与继承的选择什么时候用复合？什么时候用继承呢？这个其实主要还">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Object-C继承">
-<meta property="og:url" content="http://yuanxun2007.github.io/2015/08/29/Object-C继承/index.html">
+<meta property="og:title" content="Object-C复合">
+<meta property="og:url" content="http://yuanxun2007.github.io/2015/08/30/Object-C复合/index.html">
 <meta property="og:site_name" content="少年的梦想">
-<meta property="og:description" content="继承是OOP的一个重要特性，处理类与对象间的关系。
-1.OOP处理类与对象
-
-继承：子类继承父类，可以继承父类的方法和属性，实现对象的多态和代码重用。
-复合：对象引用其他对象时，可以利用其他对象提供的特性。
-
-
-2.为何要使用继承继承的出现主要是为了解决现实中，很多对象有共同的特性，如果每个对象都去建立一套的话，就会出现很多重复的代码，而且在维护的时候也需要多套代码，很明显这是不可取的。所以继承就">
-<meta property="og:updated_time" content="2015-08-30T08:15:37.000Z">
+<meta property="og:description" content="复合是OOP处理类与对象之间关系的另外一种方式。
+1.什么是复合复合就是把多个类的实例（即对象）组合在一起，配合使用。在Object-C中，是通过包含作为实例变量的对象指针实现的，如下所示：
+@interface Car:NSObject
+{
+    NSArray *_tires;
+    Engine *_engine;
+}
+2.复合与继承的选择什么时候用复合？什么时候用继承呢？这个其实主要还">
+<meta property="og:updated_time" content="2015-08-30T09:06:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Object-C继承">
-<meta name="twitter:description" content="继承是OOP的一个重要特性，处理类与对象间的关系。
-1.OOP处理类与对象
-
-继承：子类继承父类，可以继承父类的方法和属性，实现对象的多态和代码重用。
-复合：对象引用其他对象时，可以利用其他对象提供的特性。
-
-
-2.为何要使用继承继承的出现主要是为了解决现实中，很多对象有共同的特性，如果每个对象都去建立一套的话，就会出现很多重复的代码，而且在维护的时候也需要多套代码，很明显这是不可取的。所以继承就">
+<meta name="twitter:title" content="Object-C复合">
+<meta name="twitter:description" content="复合是OOP处理类与对象之间关系的另外一种方式。
+1.什么是复合复合就是把多个类的实例（即对象）组合在一起，配合使用。在Object-C中，是通过包含作为实例变量的对象指针实现的，如下所示：
+@interface Car:NSObject
+{
+    NSArray *_tires;
+    Engine *_engine;
+}
+2.复合与继承的选择什么时候用复合？什么时候用继承呢？这个其实主要还">
   
     <link rel="alternative" href="/atom.xml" title="少年的梦想" type="application/atom+xml">
   
@@ -200,11 +200,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Object-C继承" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Object-C复合" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/29/Object-C继承/" class="article-date">
-  	<time datetime="2015-08-29T07:32:24.000Z" itemprop="datePublished">2015-08-29</time>
+      <a href="/2015/08/30/Object-C复合/" class="article-date">
+  	<time datetime="2015-08-30T08:19:44.000Z" itemprop="datePublished">2015-08-30</time>
 </a>
     </div>
   
@@ -217,7 +217,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Object-C继承
+      Object-C复合
     </h1>
   
 
@@ -237,22 +237,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>继承是OOP的一个重要特性，处理类与对象间的关系。</p>
-<h3 id="1-OOP处理类与对象">1.OOP处理类与对象</h3><blockquote>
-<ul>
-<li>继承：子类继承父类，可以继承父类的方法和属性，实现对象的多态和代码重用。</li>
-<li>复合：对象引用其他对象时，可以利用其他对象提供的特性。</li>
-</ul>
-</blockquote>
-<h3 id="2-为何要使用继承">2.为何要使用继承</h3><p>继承的出现主要是为了解决现实中，很多对象有共同的特性，如果每个对象都去建立一套的话，就会出现很多重复的代码，而且在维护的时候也需要多套代码，很明显这是不可取的。所以继承就是为了解决代码的重用性和可维护性。</p>
-<h3 id="3-继承的语法">3.继承的语法</h3><p>@interface Circle : NSObject， 在@interface后面是定义的类名， 冒号后面是继承的类名。而且Object-C中，只支持单重继承。</p>
-<h3 id="4-继承的工作机制">4.继承的工作机制</h3><blockquote>
-<ul>
-<li>1.继承的方法调度：是通过Object-C的消息机制实现的，当代码发送消息的时候，Object-C的方法调度程序首先会在当前的类中搜索相应的方法；如果在当前类中找不到，就会将消息转发到该对象的父类中查找；如果仍然没有找到，则会在未定义的方法中查找；如果仍然没有找到，则会抛出异常。</li>
-<li>2.子类调用父类：使用super关键字，编译器会识别这个关键字，向父类发送一个消息，父类接受消息之后，仍然按照方法调度的机制，查找是否能够响应，如果不能则转发到父类查找。</li>
-<li>3.重写/覆盖父类方法：直接在当前类中，实现父类一样方法名的方法，以实现替换或者增强由超类定义的方法。</li>
-</ul>
-</blockquote>
+        <p>复合是OOP处理类与对象之间关系的另外一种方式。</p>
+<h3 id="1-什么是复合">1.什么是复合</h3><p>复合就是把多个类的实例（即对象）组合在一起，配合使用。在Object-C中，是通过包含作为实例变量的对象指针<br>实现的，如下所示：</p>
+<pre><code>@<span class="class"><span class="keyword">interface</span> <span class="title">Car</span>:NSObject
+</span>{
+    NSArray *_tires;
+    Engine *_engine;
+}
+</code></pre><h3 id="2-复合与继承的选择">2.复合与继承的选择</h3><p>什么时候用复合？什么时候用继承呢？这个其实主要还是要看抽象类间的关系，如果两个类中一个是另一个类的某一个部分的抽象关系，则更适合使用复合。如果两个类中，一个类是另外一个类更高层次的抽象的话，则更适合使用继承。</p>
+<h3 id="3-结束语">3.结束语</h3><p>这块内容，我只用文字描述了一下，感觉很简单的一个内容，不过在现实写代码中，真能够完美处理好却没有那么容易的，程序员写出来的代码，总是会有bug的。</p>
 
       
     </div>
@@ -262,18 +255,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/30/Object-C复合/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Object-C复合
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/28/Object-C面向对象/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Object-C面向对象</div>
+    <a href="/2015/08/29/Object-C继承/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Object-C继承</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -302,7 +286,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Object-C继承" data-title="Object-C继承" data-url="http://yuanxun2007.github.io/2015/08/29/Object-C继承/"></div>
+	<div class="ds-thread" data-thread-key="Object-C复合" data-title="Object-C复合" data-url="http://yuanxun2007.github.io/2015/08/30/Object-C复合/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

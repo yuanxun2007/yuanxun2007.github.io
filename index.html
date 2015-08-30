@@ -180,6 +180,69 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Object-C复合" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/30/Object-C复合/" class="article-date">
+  	<time datetime="2015-08-30T08:19:44.000Z" itemprop="datePublished">2015-08-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/30/Object-C复合/">Object-C复合</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>复合是OOP处理类与对象之间关系的另外一种方式。</p>
+<h3 id="1-什么是复合">1.什么是复合</h3><p>复合就是把多个类的实例（即对象）组合在一起，配合使用。在Object-C中，是通过包含作为实例变量的对象指针<br>实现的，如下所示：</p>
+<pre><code>@<span class="class"><span class="keyword">interface</span> <span class="title">Car</span>:NSObject
+</span>{
+    NSArray *_tires;
+    Engine *_engine;
+}
+</code></pre><h3 id="2-复合与继承的选择">2.复合与继承的选择</h3><p>什么时候用复合？什么时候用继承呢？这个其实主要还是要看抽象类间的关系，如果两个类中一个是另一个类的某一个部分的抽象关系，则更适合使用复合。如果两个类中，一个类是另外一个类更高层次的抽象的话，则更适合使用继承。</p>
+<h3 id="3-结束语">3.结束语</h3><p>这块内容，我只用文字描述了一下，感觉很简单的一个内容，不过在现实写代码中，真能够完美处理好却没有那么容易的，程序员写出来的代码，总是会有bug的。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/基础学习/">基础学习</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Object-C继承" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
