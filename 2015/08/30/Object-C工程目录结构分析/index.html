@@ -3,39 +3,33 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Objective-C复合 | 少年的梦想博客</title>
+  <title>Objective-C工程目录结构 | 少年的梦想博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="复合是OOP处理类与对象之间关系的另外一种方式。
-1.什么是复合复合就是把多个类的实例（即对象）组合在一起，配合使用。在Objective-C中，是通过包含作为实例变量的对象指针实现的，如下所示：
-@interface Car:NSObject
-{
-    NSArray *_tires;
-    Engine *_engine;
-}
-2.复合与继承的选择什么时候用复合？什么时候用继承呢？这个其实">
+  <meta name="description" content="做了好几年的ios应用开发，也看了很多网上大牛们对于ios工程文件结构的一些看法。今天我也自己梳理了一下，欢迎大家帮忙指正：
+首先，了解一下Objective-C文件组织Object-C的源代码有多个文件（一般都有.h和.m对应），通过#import来导入其他依赖类（应该注意文件之间互相重复导入，减少编译次数，提高编译效率）
+再次，来看看XCode 6.4 新建单视图模版工程目录结构
+
+模版上只有">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Objective-C复合">
-<meta property="og:url" content="http://yoursite.com/2015/08/30/Object-C复合/index.html">
+<meta property="og:title" content="Objective-C工程目录结构">
+<meta property="og:url" content="http://yoursite.com/2015/08/30/Object-C工程目录结构分析/index.html">
 <meta property="og:site_name" content="少年的梦想博客">
-<meta property="og:description" content="复合是OOP处理类与对象之间关系的另外一种方式。
-1.什么是复合复合就是把多个类的实例（即对象）组合在一起，配合使用。在Objective-C中，是通过包含作为实例变量的对象指针实现的，如下所示：
-@interface Car:NSObject
-{
-    NSArray *_tires;
-    Engine *_engine;
-}
-2.复合与继承的选择什么时候用复合？什么时候用继承呢？这个其实">
-<meta property="og:updated_time" content="2015-09-02T10:20:39.000Z">
+<meta property="og:description" content="做了好几年的ios应用开发，也看了很多网上大牛们对于ios工程文件结构的一些看法。今天我也自己梳理了一下，欢迎大家帮忙指正：
+首先，了解一下Objective-C文件组织Object-C的源代码有多个文件（一般都有.h和.m对应），通过#import来导入其他依赖类（应该注意文件之间互相重复导入，减少编译次数，提高编译效率）
+再次，来看看XCode 6.4 新建单视图模版工程目录结构
+
+模版上只有">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/logo.png">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/logo.png">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/logo.png">
+<meta property="og:updated_time" content="2015-09-02T10:16:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Objective-C复合">
-<meta name="twitter:description" content="复合是OOP处理类与对象之间关系的另外一种方式。
-1.什么是复合复合就是把多个类的实例（即对象）组合在一起，配合使用。在Objective-C中，是通过包含作为实例变量的对象指针实现的，如下所示：
-@interface Car:NSObject
-{
-    NSArray *_tires;
-    Engine *_engine;
-}
-2.复合与继承的选择什么时候用复合？什么时候用继承呢？这个其实">
+<meta name="twitter:title" content="Objective-C工程目录结构">
+<meta name="twitter:description" content="做了好几年的ios应用开发，也看了很多网上大牛们对于ios工程文件结构的一些看法。今天我也自己梳理了一下，欢迎大家帮忙指正：
+首先，了解一下Objective-C文件组织Object-C的源代码有多个文件（一般都有.h和.m对应），通过#import来导入其他依赖类（应该注意文件之间互相重复导入，减少编译次数，提高编译效率）
+再次，来看看XCode 6.4 新建单视图模版工程目录结构
+
+模版上只有">
   
     <link rel="alternative" href="/atom.xml" title="少年的梦想博客" type="application/atom+xml">
   
@@ -200,11 +194,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-Object-C复合" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Object-C工程目录结构分析" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/08/30/Object-C复合/" class="article-date">
-  	<time datetime="2015-08-30T08:19:44.000Z" itemprop="datePublished">2015-08-30</time>
+      <a href="/2015/08/30/Object-C工程目录结构分析/" class="article-date">
+  	<time datetime="2015-08-30T09:12:34.000Z" itemprop="datePublished">2015-08-30</time>
 </a>
     </div>
   
@@ -217,7 +211,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Objective-C复合
+      Objective-C工程目录结构
     </h1>
   
 
@@ -237,15 +231,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>复合是OOP处理类与对象之间关系的另外一种方式。</p>
-<h3 id="1-什么是复合">1.什么是复合</h3><p>复合就是把多个类的实例（即对象）组合在一起，配合使用。在Objective-C中，是通过包含作为实例变量的对象指针<br>实现的，如下所示：</p>
-<pre><code>@<span class="class"><span class="keyword">interface</span> <span class="title">Car</span>:NSObject
-</span>{
-    NSArray *_tires;
-    Engine *_engine;
-}
-</code></pre><h3 id="2-复合与继承的选择">2.复合与继承的选择</h3><p>什么时候用复合？什么时候用继承呢？这个其实主要还是要看抽象类间的关系，如果两个类中一个是另一个类的某一个部分，则更适合使用复合。如果两个类中，一个类是另外一个类更高层次的抽象的话，则更适合使用继承。</p>
-<h3 id="3-结束语">3.结束语</h3><p>这块内容，我只用文字描述了一下，感觉很简单的一个内容，不过在现实写代码中，真能够完美处理好却没有那么容易的，程序员写出来的代码，总是会有bug的。</p>
+        <p>做了好几年的ios应用开发，也看了很多网上大牛们对于ios工程文件结构的一些看法。今天我也自己梳理了一下，欢迎大家帮忙指正：</p>
+<h2 id="首先，了解一下Objective-C文件组织">首先，了解一下Objective-C文件组织</h2><p>Object-C的源代码有多个文件（一般都有.h和.m对应），通过#import来导入其他依赖类（应该注意文件之间互相重复导入，减少编译次数，提高编译效率）</p>
+<h2 id="再次，来看看XCode_6-4_新建单视图模版工程目录结构">再次，来看看XCode 6.4 新建单视图模版工程目录结构</h2><p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<p>模版上只有三个文件夹分组：SingleViewTest、SingleViewTestTests、Products，就是这么简单。</p>
+<h2 id="最后，分享我的IOS应用工程目录结构的一些想法">最后，分享我的IOS应用工程目录结构的一些想法</h2><h3 id="1-项目文件类型">1.项目文件类型</h3><blockquote>
+<ul>
+<li>代码文件</li>
+<li>资源文件</li>
+</ul>
+</blockquote>
+<h3 id="2-我认为的项目文件类型">2.我认为的项目文件类型</h3><blockquote>
+<ul>
+<li>代码文件</li>
+<li>资源文件</li>
+<li>第三方依赖文件</li>
+</ul>
+</blockquote>
+<h3 id="3-我的项目文件组织">3.我的项目文件组织</h3><blockquote>
+<ul>
+<li>资源：图片现在都会用Images.xcassets来管理，其他资源文件我会用Resources文件夹集中管理，不过会在工程结构上体现为不同的group(这么做其实只是想防止出现重复的资源文件)。</li>
+<li>代码文件：大概分为4类，分别为业务无关工具文件、业务相关工具文件、业务逻辑文件、第三方依赖库。</li>
+</ul>
+</blockquote>
+<h3 id="4-详细的源代码文件组织">4.详细的源代码文件组织</h3><blockquote>
+<ul>
+<li>业务无关工具文件（BaseLib）：这个文件夹我大概会存放一些扩展类、便利的封装类（包括数据存储、网络请求等），如UIDevice+Utility.h、UIImage+Utility.h、NSDate+Utility.h、NSString+Utility.h等等。（备注一下：这一块有人已经搞成了一个framework的形式嵌入到工程，但是我还是喜欢用源码方式嵌入，主要是为了自己调试方便，framework适合一些已经稳定的工程封装）</li>
+<li>业务相关工具类（BusinessLib）：这个文件夹我一般存放一些项目中需要使用的一些公用基础类，跟业务有一定相关性，比如AppManager.h、APIClient.h、SQLiteManager等等。</li>
+<li>业务逻辑类：这个模块一般分成2个，Modules、Macro。Macro主要存放一些宏定义，如一些URL、业务类型等等；Modules下面则存放根据业务分类的各个模块文件夹，每个文件夹下面大概有Macro、Controllers、Model（Model里面封装了数据的API获取方式及数据库操作－Active Record?）、Views、xxFacade(其他模块只能通过这里面暴露的接口，引用这个模块的内容)。</li>
+<li>第三方依赖库：大概可以分为2类吧，一个不需要根据源码改造，已满足需求的，这些用pods管理，不能用工程的Vendors目录下，另外一个是需要改造才能满足需求的，我一般会放在ModifiedVendors下面。</li>
+</ul>
+</blockquote>
+<p>大概如下图:</p>
+<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<h3 id="4-结尾语">4.结尾语</h3><p>经历过好多项目（有内部项目也有外包，可能外包比较多导致的吧），然而每一个项目的目录结构感觉都不是完美的（可能是我没有遇到完美的吧），总是有需要整理的地方（话说这也是可以理解的，不是每一次需求给的时间和人都是足够的，也不是所有的项目都会配有架构师，我们一般人能做的就是以最快的速度把需求完成，有烂摊子再慢慢一步一步的收拾），整理的目的就是尽量使维护和扩展更容易一些。这些是我的个人感受吧</p>
 
       
     </div>
@@ -255,18 +275,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/30/Object-C工程目录结构分析/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Objective-C工程目录结构
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/29/Object-C继承/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Objective-C继承</div>
+    <a href="/2015/08/30/Object-C复合/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Objective-C复合</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -295,7 +306,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Object-C复合" data-title="Objective-C复合" data-url="http://yoursite.com/2015/08/30/Object-C复合/"></div>
+	<div class="ds-thread" data-thread-key="Object-C工程目录结构分析" data-title="Objective-C工程目录结构" data-url="http://yoursite.com/2015/08/30/Object-C工程目录结构分析/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>少年的梦想</title>
+  <title>少年的梦想博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一直在努力的攻城狮">
+  <meta name="description">
 <meta property="og:type" content="website">
-<meta property="og:title" content="少年的梦想">
-<meta property="og:url" content="http://yuanxun2007.github.io/index.html">
-<meta property="og:site_name" content="少年的梦想">
-<meta property="og:description" content="一直在努力的攻城狮">
+<meta property="og:title" content="少年的梦想博客">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="少年的梦想博客">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="少年的梦想">
-<meta name="twitter:description" content="一直在努力的攻城狮">
+<meta name="twitter:title" content="少年的梦想博客">
+<meta name="twitter:description">
   
-    <link rel="alternative" href="/atom.xml" title="少年的梦想" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="少年的梦想博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -39,7 +39,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">默而识之，学而不厌</p>
+		<p class="header-subtitle">生命的可悲，不在于贫穷，不在于卑微，而在于失去了奋斗的方向</p>
 		
 
 		
@@ -156,7 +156,7 @@
 			  <h1 class="header-author">少年的梦想</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">默而识之，学而不厌</p>
+			<p class="header-subtitle">生命的可悲，不在于贫穷，不在于卑微，而在于失去了奋斗的方向</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -180,6 +180,95 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Object-C工程目录结构分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/30/Object-C工程目录结构分析/" class="article-date">
+  	<time datetime="2015-08-30T09:12:34.000Z" itemprop="datePublished">2015-08-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/30/Object-C工程目录结构分析/">Objective-C工程目录结构</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>做了好几年的ios应用开发，也看了很多网上大牛们对于ios工程文件结构的一些看法。今天我也自己梳理了一下，欢迎大家帮忙指正：</p>
+<h2 id="首先，了解一下Objective-C文件组织">首先，了解一下Objective-C文件组织</h2><p>Object-C的源代码有多个文件（一般都有.h和.m对应），通过#import来导入其他依赖类（应该注意文件之间互相重复导入，减少编译次数，提高编译效率）</p>
+<h2 id="再次，来看看XCode_6-4_新建单视图模版工程目录结构">再次，来看看XCode 6.4 新建单视图模版工程目录结构</h2><p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<p>模版上只有三个文件夹分组：SingleViewTest、SingleViewTestTests、Products，就是这么简单。</p>
+<h2 id="最后，分享我的IOS应用工程目录结构的一些想法">最后，分享我的IOS应用工程目录结构的一些想法</h2><h3 id="1-项目文件类型">1.项目文件类型</h3><blockquote>
+<ul>
+<li>代码文件</li>
+<li>资源文件</li>
+</ul>
+</blockquote>
+<h3 id="2-我认为的项目文件类型">2.我认为的项目文件类型</h3><blockquote>
+<ul>
+<li>代码文件</li>
+<li>资源文件</li>
+<li>第三方依赖文件</li>
+</ul>
+</blockquote>
+<h3 id="3-我的项目文件组织">3.我的项目文件组织</h3><blockquote>
+<ul>
+<li>资源：图片现在都会用Images.xcassets来管理，其他资源文件我会用Resources文件夹集中管理，不过会在工程结构上体现为不同的group(这么做其实只是想防止出现重复的资源文件)。</li>
+<li>代码文件：大概分为4类，分别为业务无关工具文件、业务相关工具文件、业务逻辑文件、第三方依赖库。</li>
+</ul>
+</blockquote>
+<h3 id="4-详细的源代码文件组织">4.详细的源代码文件组织</h3><blockquote>
+<ul>
+<li>业务无关工具文件（BaseLib）：这个文件夹我大概会存放一些扩展类、便利的封装类（包括数据存储、网络请求等），如UIDevice+Utility.h、UIImage+Utility.h、NSDate+Utility.h、NSString+Utility.h等等。（备注一下：这一块有人已经搞成了一个framework的形式嵌入到工程，但是我还是喜欢用源码方式嵌入，主要是为了自己调试方便，framework适合一些已经稳定的工程封装）</li>
+<li>业务相关工具类（BusinessLib）：这个文件夹我一般存放一些项目中需要使用的一些公用基础类，跟业务有一定相关性，比如AppManager.h、APIClient.h、SQLiteManager等等。</li>
+<li>业务逻辑类：这个模块一般分成2个，Modules、Macro。Macro主要存放一些宏定义，如一些URL、业务类型等等；Modules下面则存放根据业务分类的各个模块文件夹，每个文件夹下面大概有Macro、Controllers、Model（Model里面封装了数据的API获取方式及数据库操作－Active Record?）、Views、xxFacade(其他模块只能通过这里面暴露的接口，引用这个模块的内容)。</li>
+<li>第三方依赖库：大概可以分为2类吧，一个不需要根据源码改造，已满足需求的，这些用pods管理，不能用工程的Vendors目录下，另外一个是需要改造才能满足需求的，我一般会放在ModifiedVendors下面。</li>
+</ul>
+</blockquote>
+<p>大概如下图:</p>
+<p><img src="https://www.zybuluo.com/static/img/logo.png" alt="cmd-markdown-logo"></p>
+<h3 id="4-结尾语">4.结尾语</h3><p>经历过好多项目（有内部项目也有外包，可能外包比较多导致的吧），然而每一个项目的目录结构感觉都不是完美的（可能是我没有遇到完美的吧），总是有需要整理的地方（话说这也是可以理解的，不是每一次需求给的时间和人都是足够的，也不是所有的项目都会配有架构师，我们一般人能做的就是以最快的速度把需求完成，有烂摊子再慢慢一步一步的收拾），整理的目的就是尽量使维护和扩展更容易一些。这些是我的个人感受吧</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/基础学习/">基础学习</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-Object-C复合" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -197,7 +286,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/30/Object-C复合/">Object-C复合</a>
+      <a class="article-title" href="/2015/08/30/Object-C复合/">Objective-C复合</a>
     </h1>
   
 
@@ -207,7 +296,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>复合是OOP处理类与对象之间关系的另外一种方式。</p>
-<h3 id="1-什么是复合">1.什么是复合</h3><p>复合就是把多个类的实例（即对象）组合在一起，配合使用。在Object-C中，是通过包含作为实例变量的对象指针<br>实现的，如下所示：</p>
+<h3 id="1-什么是复合">1.什么是复合</h3><p>复合就是把多个类的实例（即对象）组合在一起，配合使用。在Objective-C中，是通过包含作为实例变量的对象指针<br>实现的，如下所示：</p>
 <pre><code>@<span class="class"><span class="keyword">interface</span> <span class="title">Car</span>:NSObject
 </span>{
     NSArray *_tires;
@@ -260,7 +349,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/29/Object-C继承/">Object-C继承</a>
+      <a class="article-title" href="/2015/08/29/Object-C继承/">Objective-C继承</a>
     </h1>
   
 
@@ -277,10 +366,10 @@
 </ul>
 </blockquote>
 <h3 id="2-为何要使用继承">2.为何要使用继承</h3><p>继承的出现主要是为了解决现实中，很多对象有共同的特性，如果每个对象都去建立一套的话，就会出现很多重复的代码，而且在维护的时候也需要多套代码，很明显这是不可取的。所以继承就是为了解决代码的重用性和可维护性。</p>
-<h3 id="3-继承的语法">3.继承的语法</h3><p>@interface Circle : NSObject， 在@interface后面是定义的类名， 冒号后面是继承的类名。而且Object-C中，只支持单重继承。</p>
+<h3 id="3-继承的语法">3.继承的语法</h3><p>@interface Circle : NSObject， 在@interface后面是定义的类名， 冒号后面是继承的类名。而且Objective-C中，只支持单重继承。</p>
 <h3 id="4-继承的工作机制">4.继承的工作机制</h3><blockquote>
 <ul>
-<li>1.继承的方法调度：是通过Object-C的消息机制实现的，当代码发送消息的时候，Object-C的方法调度程序首先会在当前的类中搜索相应的方法；如果在当前类中找不到，就会将消息转发到该对象的父类中查找；如果仍然没有找到，则会在未定义的方法中查找；如果仍然没有找到，则会抛出异常。</li>
+<li>1.继承的方法调度：是通过Objective-C的消息机制实现的，当代码发送消息的时候，Objective-C的方法调度程序首先会在当前的类中搜索相应的方法；如果在当前类中找不到，就会将消息转发到该对象的父类中查找；如果仍然没有找到，则会在未定义的方法中查找；如果仍然没有找到，则会抛出异常。</li>
 <li>2.子类调用父类：使用super关键字，编译器会识别这个关键字，向父类发送一个消息，父类接受消息之后，仍然按照方法调度的机制，查找是否能够响应，如果不能则转发到父类查找。</li>
 <li>3.重写/覆盖父类方法：直接在当前类中，实现父类一样方法名的方法，以实现替换或者增强由超类定义的方法。</li>
 </ul>
@@ -330,7 +419,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/28/Object-C面向对象/">Object-C面向对象</a>
+      <a class="article-title" href="/2015/08/28/Object-C面向对象/">Objective-C面向对象</a>
     </h1>
   
 
@@ -340,7 +429,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>面向对象编程(Object-Oriented Programming)的首字母缩写为OOP，这是一种编程技术，最初是为编写模拟程序而开发的。</p>
-<h3 id="1-_首先要了解一下使用间接">1. 首先要了解一下使用间接</h3><p>间接的含义很简单——不在代码中直接使用某个值，而是使用该值的指针。在Object-C里面，见的最多的就是指针，引起问题的，绝大部分也是指针。不管是面向过程还是面向对象，都使用了这个技术。</p>
+<h3 id="1-_首先要了解一下使用间接">1. 首先要了解一下使用间接</h3><p>间接的含义很简单——不在代码中直接使用某个值，而是使用该值的指针。在Objective-C里面，见的最多的就是指针，引起问题的，绝大部分也是指针。不管是面向过程还是面向对象，都使用了这个技术。</p>
 <h3 id="2-_面向过程_&amp;_面向对象">2. 面向过程 &amp; 面向对象</h3><blockquote>
 <ul>
 <li>面向过程：分析出解决问题所需的步骤，然后用函数把这些步骤一步一步实现，使用的时候一个一个依次调用就可以了。偏向于机器的思考方式</li>
@@ -368,15 +457,15 @@
 <li>多态：对象根据所接收的消息而做出的动作，不同的对象接收消息时做出的动作可能完全不同，这种现象称为多态。在程序中，接口是动作的抽象，接口的主要目的是为不相关的类提供通用的处理服务，多态就是接口的多种不同实现方式。比如鸟会飞，但是超人也会飞，通过飞这个接口，我们可以让鸟和超人，都实现这个接口，这就实现了系统的可维护性，可扩展性。 </li>
 </ul>
 </blockquote>
-<h3 id="7-_在Object-C中如何体现面向对象">7. 在Object-C中如何体现面向对象</h3><blockquote>
+<h3 id="7-_在Objective-C中如何体现面向对象">7. 在Objective-C中如何体现面向对象</h3><blockquote>
 <ul>
 <li>类：使用@interface声明类，在@interface中定义类包含的数据与方法,实现类的封装。</li>
 <li>协议：使用@protocol声明协议，定义通用的方法。然后通过在不同类中@implementation实现同一个方法，不同的操作，实现了类的多态。</li>
-<li>继承：在@interface声明的类名后面，有一个:NSObject，即代表继承自NSObject类。在Object-C中，只支持单重继承，所有类都继承自NSObject或者NSProxy这2个基类，而且这2个基类都实现了协议NSObject。子类中可以使用super调用父类，使用跟父类一样的方法名，覆盖父类方法，在自己的方法中，做一些扩展，调用父类的方法，即可重载父类的方法。</li>
-<li>消息：Object-C的消息发送机制，转发机制和响应机制，描述了对象之间的通信。其实这个消息机制是学习Object-C的一个核心，理解了这个机制对于开发、分析问题是很有帮助的。</li>
+<li>继承：在@interface声明的类名后面，有一个:NSObject，即代表继承自NSObject类。在Objective-C中，只支持单重继承，所有类都继承自NSObject或者NSProxy这2个基类，而且这2个基类都实现了协议NSObject。子类中可以使用super调用父类，使用跟父类一样的方法名，覆盖父类方法，在自己的方法中，做一些扩展，调用父类的方法，即可重载父类的方法。</li>
+<li>消息：Objective-C的消息发送机制，转发机制和响应机制，描述了对象之间的通信。其实这个消息机制是学习Objective-C的一个核心，理解了这个机制对于开发、分析问题是很有帮助的。</li>
 </ul>
 </blockquote>
-<h3 id="结尾语">结尾语</h3><p>上面的这些，都是在网上摘抄的，以方便自己理解这一块内容，也算是一个总结吧。对于Object-C里面，具体到每一个特性，都可以写一篇文章出来，这里算是大概的理解一下面向对象是个什么东西，Object-C中怎么对应面向对象这些特性吧。</p>
+<h3 id="结尾语">结尾语</h3><p>上面的这些，都是在网上摘抄的，以方便自己理解这一块内容，也算是一个总结吧。对于Objective-C里面，具体到每一个特性，都可以写一篇文章出来，这里算是大概的理解一下面向对象是个什么东西，Objective-C中怎么对应面向对象这些特性吧。</p>
 <p>[1] 参考链接： <a href="http://www.cnblogs.com/seesea125/archive/2012/04/03/2431176.html" target="_blank" rel="external">http://www.cnblogs.com/seesea125/archive/2012/04/03/2431176.html</a></p>
 <p>[2] 参考链接： <a href="http://blog.csdn.net/wofangfan/article/details/5925435" target="_blank" rel="external">http://blog.csdn.net/wofangfan/article/details/5925435</a></p>
 
@@ -516,7 +605,7 @@ POINTER        <span class="number">32</span>       <span class="number">32</spa
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/17/Object-C中的布尔类型/">Object-C中的布尔类型(BOOL)</a>
+      <a class="article-title" href="/2015/08/17/Object-C中的布尔类型/">Objective-C中的布尔类型(BOOL)</a>
     </h1>
   
 
@@ -525,7 +614,7 @@ POINTER        <span class="number">32</span>       <span class="number">32</spa
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>布尔类型用来声明存储真值和假值的变量。在Object-C中，类型BOOL,具有YES和NO两个值。</p>
+        <p>布尔类型用来声明存储真值和假值的变量。在Objective-C中，类型BOOL,具有YES和NO两个值。</p>
 <h3 id="1-_首先来看看定义，在objc-h(ios_sdk_8-4及osx_sdk_10-10)文件中，我们看到如下定义：">1. 首先来看看定义，在objc.h(ios sdk 8.4及osx sdk 10.10)文件中，我们看到如下定义：</h3><pre><code><span class="preprocessor">#<span class="keyword">define</span> OBJC_BOOL_DEFINED</span>
 
 <span class="comment">/// Type to represent a boolean value.</span>
@@ -770,7 +859,7 @@ c == NO
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/17/关于-的一些知识/">关于Object-C中@用法的梳理</a>
+      <a class="article-title" href="/2015/08/17/关于-的一些知识/">关于Objective-C中@用法的梳理</a>
     </h1>
   
 
@@ -779,8 +868,8 @@ c == NO
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：</p>
-<h3 id="1-_用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：">1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：</h3><pre><code><span class="number">1.</span> 封装字符串： NSString *someString = @<span class="string">"Hello World!"</span>;
+        <p>@是Objective-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：</p>
+<h3 id="1-_用的最多的，就是字面量，语法很精简。把字符、数值封装到Objective-C的对象中，同时也可以用来创建数组，字典。例如：">1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Objective-C的对象中，同时也可以用来创建数组，字典。例如：</h3><pre><code><span class="number">1.</span> 封装字符串： NSString *someString = @<span class="string">"Hello World!"</span>;
 <span class="number">2.</span> 封装整型： NSNumber *intNumber = @<span class="number">1</span>;
 <span class="number">3.</span> 封装浮点型数值： NSNumber *floatNumber = @<span class="number">1.06f</span>;
 <span class="number">4.</span> 封装布尔型数值： NSNumber *boolNumber = @YES; 
@@ -792,7 +881,7 @@ c == NO
 </code></pre><h3 id="2-_定义一条指令。比如：">2. 定义一条指令。比如：</h3><pre><code>1. 定义一个类：<span class="at_rule">@<span class="keyword">interface</span> Shape : NSObject</span>;
 2. 定义一个实现：<span class="at_rule">@<span class="keyword">implemention</span> Shape</span>;
 3. 定义一个接口：<span class="at_rule">@<span class="keyword">protocol</span> UIWebViewDelegate &lt;NSObject&gt;</span>;
-</code></pre><h3 id="3-_输出Object-C对象。比如：">3. 输出Object-C对象。比如：</h3><pre><code><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"The number is %@"</span>,<span class="preprocessor"> someNumber</span>);</span>
+</code></pre><h3 id="3-_输出Objective-C对象。比如：">3. 输出Objective-C对象。比如：</h3><pre><code><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"The number is %@"</span>,<span class="preprocessor"> someNumber</span>);</span>
 </code></pre><p>以上是我学习的时候梳理的’@’的用法，不知道对不对，继续深入学习中…</p>
 
       
@@ -858,7 +947,7 @@ c == NO
 <span class="id">#include</span> <span class="string">"ClassA"</span>
 
 #endif
-</code></pre><h2 id="2-_#import">2. #import</h2><p>  Object-C使用头文件来包含元素声明，这些元素包括结构体、符号常量、函数原型等。Object-C语言使用#import语句来通知编译器在头文件中查询定义，功能和#include基本一致，不过#import可保证头文件只被包含一次，而不论此命令实际上在那个文件中出现了多少次。</p>
+</code></pre><h2 id="2-_#import">2. #import</h2><p>  Objective-C使用头文件来包含元素声明，这些元素包括结构体、符号常量、函数原型等。Objective-C语言使用#import语句来通知编译器在头文件中查询定义，功能和#include基本一致，不过#import可保证头文件只被包含一次，而不论此命令实际上在那个文件中出现了多少次。</p>
 <h2 id="3-_@class">3. @class</h2><p>  声明一个类，告诉编译器它后面是一个类的名字，不用管实现。在实现文件，如果需要使用这个类，则需要#import这个类，才会把类的引用信息包含进来。</p>
 <h2 id="4-_#import、#include二者的区别">4. #import、#include二者的区别</h2><p>  前者不会出现引用重复引用，保证在同一个文件中，一个头文件只会被#import一次；而后者如果不注意，则有可能导致重复引用同一个头文件。</p>
 <h2 id="5-_#include、#import、@class三者的区别">5. #include、#import、@class三者的区别</h2><p>  #include和#import引用类的时候，会包含类的所有信息，包括变量方法等，会对编译效率产生一定的影响，而@class则仅仅是告诉编译器一个类的声明，不会把类的引用信息包含进来。所以一般在@interface中，引用一个类用@class就好了。</p>
@@ -918,7 +1007,7 @@ c == NO
       
         <h3 id="在面试中被问到，感觉一脸茫然，不知道怎么答起？只是隐约记得好像是foundation和库之类的一些东西。说明我的知识掌握确实不是太好。回到家中补了一下课，梳理了一下，大概有以下几点吧：">在面试中被问到，感觉一脸茫然，不知道怎么答起？只是隐约记得好像是foundation和库之类的一些东西。说明我的知识掌握确实不是太好。回到家中补了一下课，梳理了一下，大概有以下几点吧：</h3><h3 id="1-_cocoa的前生：">1. cocoa的前生：</h3><p>1985年， steve jobs创建了NeXT公司,致力于开发强大且经济的工作站。NeXT选择Unix作为其操作系统，创建了NextSTEP。NextSTEP只是创造了一些特性，拥有少量忠实用户，并未在商业上获得成功。</p>
 <p>1996年，苹果公司收购NeXT之后，NextSTEP被重命名为cocoa，并得到了Macintosh编程人员的广泛认可。</p>
-<h3 id="2-_cocoa是什么：">2. cocoa是什么：</h3><p>使用Object-C开发的一款强大的用户界面工具包。</p>
+<h3 id="2-_cocoa是什么：">2. cocoa是什么：</h3><p>使用Objective-C开发的一款强大的用户界面工具包。</p>
 <h3 id="3-_cocoa的现在：">3. cocoa的现在：</h3><p>经过多年的发展，Cocoa已经演化成一个功能强大的优秀工具集。    </p>
 
       
@@ -1002,60 +1091,10 @@ c == NO
 
 
   
-    <article id="post-观俞世维先生《放错了位置》有感" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2015/07/31/观俞世维先生《放错了位置》有感/" class="article-date">
-  	<time datetime="2015-07-31T04:19:09.000Z" itemprop="datePublished">2015-07-31</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/31/观俞世维先生《放错了位置》有感/">观俞世维先生《放错了位置》有感</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="最近看了余世维先生的《放错了位置》微信公众号分享，对于他的观点，我也是很认同的，这也让我想起了当年看《李卫当官》这个电视剧里面的一个场景，当时的皇帝康熙跟李卫的对话，李卫说他见一个贪官杀一个，康熙跟他说，你杀完一个，又起来一个，怎么办？杀是杀不完的，应该是要从吏治着手，整顿吏治才是重中之中。目前的中国也同样面临这个问题，希望主席能够从这个方面着手，把国家治理的更好。">最近看了余世维先生的《放错了位置》微信公众号分享，对于他的观点，我也是很认同的，这也让我想起了当年看《李卫当官》这个电视剧里面的一个场景，当时的皇帝康熙跟李卫的对话，李卫说他见一个贪官杀一个，康熙跟他说，你杀完一个，又起来一个，怎么办？杀是杀不完的，应该是要从吏治着手，整顿吏治才是重中之中。目前的中国也同样面临这个问题，希望主席能够从这个方面着手，把国家治理的更好。</h3>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/随笔/">随笔</a>
-	</div>
-
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </div>
       <footer id="footer">

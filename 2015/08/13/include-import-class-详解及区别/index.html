@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>#include #import @class 详解及区别 | 少年的梦想</title>
+  <title>#include #import @class 详解及区别 | 少年的梦想博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. #include[1] #include :引用系统自带的头文件，编译器会在系统目录下查找.
 [2] #include “x.h”:引用用户自定义的文件，编译器首先会在用户目录下查找，然后到安装目录下查找，最后在系统文件中查找.
@@ -13,15 +13,15 @@
 #define _CLASSA_H">
 <meta property="og:type" content="article">
 <meta property="og:title" content="#include #import @class 详解及区别">
-<meta property="og:url" content="http://yuanxun2007.github.io/2015/08/13/include-import-class-详解及区别/index.html">
-<meta property="og:site_name" content="少年的梦想">
+<meta property="og:url" content="http://yoursite.com/2015/08/13/include-import-class-详解及区别/index.html">
+<meta property="og:site_name" content="少年的梦想博客">
 <meta property="og:description" content="1. #include[1] #include :引用系统自带的头文件，编译器会在系统目录下查找.
 [2] #include “x.h”:引用用户自定义的文件，编译器首先会在用户目录下查找，然后到安装目录下查找，最后在系统文件中查找.
 [3] 使用#include的时候要注意重复引用，一般使用#ifndef命令来解决，列如：
 #ifndef _CLASSA_H
 
 #define _CLASSA_H">
-<meta property="og:updated_time" content="2015-08-13T06:19:27.000Z">
+<meta property="og:updated_time" content="2015-09-02T10:21:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="#include #import @class 详解及区别">
 <meta name="twitter:description" content="1. #include[1] #include :引用系统自带的头文件，编译器会在系统目录下查找.
@@ -31,7 +31,7 @@
 
 #define _CLASSA_H">
   
-    <link rel="alternative" href="/atom.xml" title="少年的梦想" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="少年的梦想博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -55,7 +55,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">默而识之，学而不厌</p>
+		<p class="header-subtitle">生命的可悲，不在于贫穷，不在于卑微，而在于失去了奋斗的方向</p>
 		
 
 		
@@ -172,7 +172,7 @@
 			  <h1 class="header-author">少年的梦想</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">默而识之，学而不厌</p>
+			<p class="header-subtitle">生命的可悲，不在于贫穷，不在于卑微，而在于失去了奋斗的方向</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -241,7 +241,7 @@
 <span class="id">#include</span> <span class="string">"ClassA"</span>
 
 #endif
-</code></pre><h2 id="2-_#import">2. #import</h2><p>  Object-C使用头文件来包含元素声明，这些元素包括结构体、符号常量、函数原型等。Object-C语言使用#import语句来通知编译器在头文件中查询定义，功能和#include基本一致，不过#import可保证头文件只被包含一次，而不论此命令实际上在那个文件中出现了多少次。</p>
+</code></pre><h2 id="2-_#import">2. #import</h2><p>  Objective-C使用头文件来包含元素声明，这些元素包括结构体、符号常量、函数原型等。Objective-C语言使用#import语句来通知编译器在头文件中查询定义，功能和#include基本一致，不过#import可保证头文件只被包含一次，而不论此命令实际上在那个文件中出现了多少次。</p>
 <h2 id="3-_@class">3. @class</h2><p>  声明一个类，告诉编译器它后面是一个类的名字，不用管实现。在实现文件，如果需要使用这个类，则需要#import这个类，才会把类的引用信息包含进来。</p>
 <h2 id="4-_#import、#include二者的区别">4. #import、#include二者的区别</h2><p>  前者不会出现引用重复引用，保证在同一个文件中，一个头文件只会被#import一次；而后者如果不注意，则有可能导致重复引用同一个头文件。</p>
 <h2 id="5-_#include、#import、@class三者的区别">5. #include、#import、@class三者的区别</h2><p>  #include和#import引用类的时候，会包含类的所有信息，包括变量方法等，会对编译效率产生一定的影响，而@class则仅仅是告诉编译器一个类的声明，不会把类的引用信息包含进来。所以一般在@interface中，引用一个类用@class就好了。</p>
@@ -258,7 +258,7 @@
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          关于Object-C中@用法的梳理
+          关于Objective-C中@用法的梳理
         
       </div>
     </a>
@@ -294,7 +294,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="include-import-class-详解及区别" data-title="#include #import @class 详解及区别" data-url="http://yuanxun2007.github.io/2015/08/13/include-import-class-详解及区别/"></div>
+	<div class="ds-thread" data-thread-key="include-import-class-详解及区别" data-title="#include #import @class 详解及区别" data-url="http://yoursite.com/2015/08/13/include-import-class-详解及区别/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

@@ -3,29 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于Object-C中@用法的梳理 | 少年的梦想</title>
+  <title>关于Objective-C中@用法的梳理 | 少年的梦想博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
-1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
+  <meta name="description" content="@是Objective-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
+1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Objective-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
 2. 封装整型： NSNumber *intNumber = @1;
-3. 封装浮点型数值">
+3. 封">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于Object-C中@用法的梳理">
-<meta property="og:url" content="http://yuanxun2007.github.io/2015/08/17/关于-的一些知识/index.html">
-<meta property="og:site_name" content="少年的梦想">
-<meta property="og:description" content="@是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
-1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
+<meta property="og:title" content="关于Objective-C中@用法的梳理">
+<meta property="og:url" content="http://yoursite.com/2015/08/17/关于-的一些知识/index.html">
+<meta property="og:site_name" content="少年的梦想博客">
+<meta property="og:description" content="@是Objective-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
+1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Objective-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
 2. 封装整型： NSNumber *intNumber = @1;
-3. 封装浮点型数值">
-<meta property="og:updated_time" content="2015-08-18T16:59:50.000Z">
+3. 封">
+<meta property="og:updated_time" content="2015-09-02T10:22:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于Object-C中@用法的梳理">
-<meta name="twitter:description" content="@是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
-1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
+<meta name="twitter:title" content="关于Objective-C中@用法的梳理">
+<meta name="twitter:description" content="@是Objective-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：
+1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Objective-C的对象中，同时也可以用来创建数组，字典。例如：1. 封装字符串： NSString *someString = @&quot;Hello World!&quot;;
 2. 封装整型： NSNumber *intNumber = @1;
-3. 封装浮点型数值">
+3. 封">
   
-    <link rel="alternative" href="/atom.xml" title="少年的梦想" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="少年的梦想博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -49,7 +49,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">默而识之，学而不厌</p>
+		<p class="header-subtitle">生命的可悲，不在于贫穷，不在于卑微，而在于失去了奋斗的方向</p>
 		
 
 		
@@ -166,7 +166,7 @@
 			  <h1 class="header-author">少年的梦想</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">默而识之，学而不厌</p>
+			<p class="header-subtitle">生命的可悲，不在于贫穷，不在于卑微，而在于失去了奋斗的方向</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -205,7 +205,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      关于Object-C中@用法的梳理
+      关于Objective-C中@用法的梳理
     </h1>
   
 
@@ -225,8 +225,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@是Object-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：</p>
-<h3 id="1-_用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：">1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Object-C的对象中，同时也可以用来创建数组，字典。例如：</h3><pre><code><span class="number">1.</span> 封装字符串： NSString *someString = @<span class="string">"Hello World!"</span>;
+        <p>@是Objective-C的一个特性，可以认为是对C的扩展，梳理了一下，大概有以下几个用法：</p>
+<h3 id="1-_用的最多的，就是字面量，语法很精简。把字符、数值封装到Objective-C的对象中，同时也可以用来创建数组，字典。例如：">1. 用的最多的，就是字面量，语法很精简。把字符、数值封装到Objective-C的对象中，同时也可以用来创建数组，字典。例如：</h3><pre><code><span class="number">1.</span> 封装字符串： NSString *someString = @<span class="string">"Hello World!"</span>;
 <span class="number">2.</span> 封装整型： NSNumber *intNumber = @<span class="number">1</span>;
 <span class="number">3.</span> 封装浮点型数值： NSNumber *floatNumber = @<span class="number">1.06f</span>;
 <span class="number">4.</span> 封装布尔型数值： NSNumber *boolNumber = @YES; 
@@ -238,7 +238,7 @@
 </code></pre><h3 id="2-_定义一条指令。比如：">2. 定义一条指令。比如：</h3><pre><code>1. 定义一个类：<span class="at_rule">@<span class="keyword">interface</span> Shape : NSObject</span>;
 2. 定义一个实现：<span class="at_rule">@<span class="keyword">implemention</span> Shape</span>;
 3. 定义一个接口：<span class="at_rule">@<span class="keyword">protocol</span> UIWebViewDelegate &lt;NSObject&gt;</span>;
-</code></pre><h3 id="3-_输出Object-C对象。比如：">3. 输出Object-C对象。比如：</h3><pre><code><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"The number is %@"</span>,<span class="preprocessor"> someNumber</span>);</span>
+</code></pre><h3 id="3-_输出Objective-C对象。比如：">3. 输出Objective-C对象。比如：</h3><pre><code><span class="function">NSLog</span>(<span class="at_rule">@<span class="string">"The number is %@"</span>,<span class="preprocessor"> someNumber</span>);</span>
 </code></pre><p>以上是我学习的时候梳理的’@’的用法，不知道对不对，继续深入学习中…</p>
 
       
@@ -253,7 +253,7 @@
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          Object-C中的布尔类型(BOOL)
+          Objective-C中的布尔类型(BOOL)
         
       </div>
     </a>
@@ -289,7 +289,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="关于-的一些知识" data-title="关于Object-C中@用法的梳理" data-url="http://yuanxun2007.github.io/2015/08/17/关于-的一些知识/"></div>
+	<div class="ds-thread" data-thread-key="关于-的一些知识" data-title="关于Objective-C中@用法的梳理" data-url="http://yoursite.com/2015/08/17/关于-的一些知识/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
